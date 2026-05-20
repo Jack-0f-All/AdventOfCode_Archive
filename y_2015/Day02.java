@@ -56,7 +56,22 @@ public class Day02 implements Day {
     }
 
     public void part2(Scanner s) {
+        int total_ribbon = 0;
+        while (s.hasNextLine()) {
+            String[] dimensions = s.nextLine().split("x");
+            int length = Integer.parseInt(dimensions[0]);
+            int width = Integer.parseInt(dimensions[1]);
+            int height = Integer.parseInt(dimensions[2]);
 
+            int face1 = 2 * length + 2 * width;
+            int face2 = 2 * width + 2 * height;
+            int face3 = 2 * height + 2 * length;
+
+            //Finds the smallest face and then adds the "bow" length.
+            total_ribbon += Integer.min(face1, Integer.min(face2, face3)) + length*width*height;
+        }
+
+        System.out.println(total_ribbon);
     }
 
     private int calcSurfaceArea(int l, int w, int h){
